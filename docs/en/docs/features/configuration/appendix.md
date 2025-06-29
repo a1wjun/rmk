@@ -110,7 +110,7 @@ MouseWheelLeft   MouseDown  MouseWheelRight  MouseWheelDown
 # Behavior configuration, if you don't want to customize anything, just ignore this section
 [behavior]
 # Tri Layer configuration
-tri_layer = { uppper = 1, lower = 2, adjust = 3 }
+tri_layer = { upper = 1, lower = 2, adjust = 3 }
 # One Shot configuration
 one_shot = { timeout = "1s" }
 
@@ -148,11 +148,11 @@ battery_adc_pin = "vddh"
 adc_divider_measured = 2000
 # Total resistance of the full path for input adc
 adc_divider_total = 2806
-# Pin that reads battery's charging state, `low-active` means the battery is charging when `charge_state.pin` is low
+# [Depreciated] Pin that reads battery's charging state, `low-active` means the battery is charging when `charge_state.pin` is low
 # Input pin that indicates the charging state
-charge_state = { pin = "PIN_1", low_active = true }
-# Output LED pin that blinks when the battery is low
-charge_led= { pin = "PIN_2", low_active = true }
+# charge_state = { pin = "PIN_1", low_active = true }
+# [Depreciated] Output LED pin that blinks when the battery is low
+# charge_led= { pin = "PIN_2", low_active = true }
 
 # Split configuration
 # This section is conflict with [split] section, you could only have either [matrix] or [split], but NOT BOTH

@@ -27,7 +27,7 @@ use rmk::input_device::Runnable as _;
 use rmk::keyboard::Keyboard;
 use rmk::light::LightController;
 use rmk::matrix::Matrix;
-use rmk::{HostResources, initialize_keymap_and_storage, run_devices, run_rmk};
+use rmk::{initialize_keymap_and_storage, run_devices, run_rmk, HostResources};
 use static_cell::StaticCell;
 use vial::{VIAL_KEYBOARD_DEF, VIAL_KEYBOARD_ID};
 use {defmt_rtt as _, panic_probe as _};
@@ -53,7 +53,7 @@ const L2CAP_TXQ: u8 = 3;
 const L2CAP_RXQ: u8 = 3;
 
 /// Size of L2CAP packets
-const L2CAP_MTU: usize = 72;
+const L2CAP_MTU: usize = 251;
 
 fn build_sdc<'d, const N: usize>(
     p: nrf_sdc::Peripherals<'d>,
@@ -64,6 +64,9 @@ fn build_sdc<'d, const N: usize>(
     sdc::Builder::new()?
         .support_adv()?
         .support_peripheral()?
+        .support_dle_peripheral()?
+        .support_phy_update_peripheral()?
+        .support_le_2m_phy()?
         .peripheral_count(1)?
         .buffer_cfg(L2CAP_MTU as u16, L2CAP_MTU as u16, L2CAP_TXQ, L2CAP_RXQ)?
         .build(p, rng, mpsl, mem)
